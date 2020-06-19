@@ -38,6 +38,10 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
+            "Microsoft.AspNetCore.Http": {
+              "target": "Package",
+              "version": "[*, )"
+            },
             "Microsoft.EntityFrameWorkCore": {
               "target": "Package",
               "version": "[3.1.5, )"

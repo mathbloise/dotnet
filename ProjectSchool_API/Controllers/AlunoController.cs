@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ProjectSchool_API.Controllers
@@ -13,31 +14,73 @@ namespace ProjectSchool_API.Controllers
         [HttpGet]
         public IActionResult get()
         {
-            return Ok();
+            try
+            {
+                try
+            {
+                return Ok();
+            }
+            catch (System.Exception)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Banco de dados falhou");
+            }
+            }
+            catch (System.Exception)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Banco de dados falhou");
+            }
         }
 
         [HttpGet("{AlunoId}")]
         public IActionResult get(int AlunoId)
         {
-            return Ok();
+            try
+            {
+                return Ok();
+            }
+            catch (System.Exception)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Banco de dados falhou");
+            }
         }
         
         [HttpPost]
         public IActionResult post()
         {
-            return Ok();
+            try
+            {
+                return Ok();
+            }
+            catch (System.Exception)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Banco de dados falhou");
+            }
         }
 
         [HttpPut("{AlunoId}")]
         public IActionResult put(int AlunoId)
         {
-            return Ok();
+            try
+            {
+                return Ok();
+            }
+            catch (System.Exception)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Banco de dados falhou");
+            }
         }
         
         [HttpDelete("{AlunoId}")]
         public IActionResult delete(int AlunoId)
         {
-            return Ok();
+            try
+            {
+                return Ok();
+            }
+            catch (System.Exception)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Banco de dados falhou");
+            }
         }
     }
 }

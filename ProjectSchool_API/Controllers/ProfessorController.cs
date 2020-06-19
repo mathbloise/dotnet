@@ -13,31 +13,66 @@ namespace ProjectSchool_API.Controllers
         [HttpGet]
         public IActionResult get()
         {
-            return Ok();
+            try
+            {
+                return Ok();
+            }
+            catch (System.Exception)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Banco de dados falhou");
+            }
         }
         
         [HttpGet("ProfessorId")]
         public IActionResult get(int ProfessorId)
         {
-            return Ok();   
+            try
+            {
+                return Ok();
+            }
+            catch (System.Exception)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Banco de dados falhou");
+            }   
         }
 
         [HttpPost]
         public IActionResult post()
         {
-            return Ok();
+            try
+            {
+                return Ok();
+            }
+            catch (System.Exception)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Banco de dados falhou");
+            }
         }
 
         [HttpPut("ProfessorId")]
         public IActionResult put(int ProfessorId)
         {
-            return Ok();
+            try
+            {
+                return Ok();
+            }
+            catch (System.Exception)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Banco de dados falhou");
+            }
         }
 
         [HttpDelete("ProfessorId")]
         public IActionResult delete(int ProfessorId)
         {
-            return Ok();
+            try
+            {
+                return Ok();
+            }
+            catch (System.Exception)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Banco de dados falhou");
+            }
         }
     }
 }
