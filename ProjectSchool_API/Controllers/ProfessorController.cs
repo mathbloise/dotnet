@@ -1,4 +1,8 @@
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using ProjectSchool_API.Data;
+using ProjectSchool_API.Models;
 
 namespace ProjectSchool_API.Controllers
 {
@@ -6,42 +10,34 @@ namespace ProjectSchool_API.Controllers
     [Route("api/[controller]")]
     public class ProfessorController : Controller
     {
-        public ProfessorController()
+        private readonly IRepository _repo;
+        public ProfessorController(IRepository repo)
         {
+            _repo = repo;
         }
 
         [HttpGet]
-        public IActionResult get()
+        public async Task<IActionResult> get()
         {
             try
             {
-                return Ok();
+                var result = await _repo.GetAllProfessoresAsync(true);
+                return Ok(result);
             }
             catch (System.Exception)
             {
                 return this.StatusCode(StatusCodes.Status500InternalServerError, "Banco de dados falhou");
             }
-        }
-        
-        [HttpGet("ProfessorId")]
-        public IActionResult get(int ProfessorId)
-        {
-            try
-            {
-                return Ok();
-            }
-            catch (System.Exception)
-            {
-                return this.StatusCode(StatusCodes.Status500InternalServerError, "Banco de dados falhou");
-            }   
         }
 
-        [HttpPost]
-        public IActionResult post()
+        [HttpGet("{ProfessorId}")]
+        public async Task<IActionResult> getByProfessorId(int ProfessorId)
         {
             try
             {
-                return Ok();
+                var result = await _repo.GetProfessorAsyncById(ProfessorId, true);
+
+                return Ok(result);
             }
             catch (System.Exception)
             {
@@ -49,30 +45,64 @@ namespace ProjectSchool_API.Controllers
             }
         }
 
-        [HttpPut("ProfessorId")]
-        public IActionResult put(int ProfessorId)
+        [HttpPost]
+        public async Task<IActionResult> post(Professor model)
         {
             try
             {
-                return Ok();
+                _repo.Add(model);
+
+                if (await _repo.SaveChangesAsync()) {
+                   return Created($"/api/Professor/{model.Id}", model); 
+                }
             }
             catch (System.Exception)
             {
                 return this.StatusCode(StatusCodes.Status500InternalServerError, "Banco de dados falhou");
             }
+            return BadRequest();
+        }
+
+        [HttpPut("{ProfessorId}")]
+        public async Task<IActionResult> put(int ProfessorId, Professor model)
+        {
+            try
+            {
+                var Professor = await _repo.GetProfessorAsyncById(ProfessorId, false);
+                if (Professor == null) return NotFound();
+
+                _repo.Update(model);
+                
+                if(await _repo.SaveChangesAsync()) {
+                    return Created($"/api/Professor/{Professor.Id}", Professor);
+                }
+            }
+            catch (System.Exception)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Banco de dados falhou");
+            }
+            return BadRequest();
         }
 
         [HttpDelete("ProfessorId")]
-        public IActionResult delete(int ProfessorId)
+        public async Task<IActionResult> delete(int ProfessorId)
         {
             try
             {
-                return Ok();
+                var Professor = await _repo.GetProfessorAsyncById(ProfessorId, false);
+                if (Professor == null) return NotFound();
+                
+                _repo.Delete(Professor);
+
+                if (await _repo.SaveChangesAsync()) {
+                    return Ok();
+                }
             }
             catch (System.Exception)
             {
                 return this.StatusCode(StatusCodes.Status500InternalServerError, "Banco de dados falhou");
             }
+            return BadRequest();
         }
     }
 }
