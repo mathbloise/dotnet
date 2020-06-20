@@ -64,12 +64,12 @@ namespace ProjectSchool_API.Migrations
             migrationBuilder.InsertData(
                 table: "Alunos",
                 columns: new[] { "Id", "DataNasc", "Nome", "ProfessorId", "Sobrenome" },
-                values: new object[] { 2, "25/11/1999", "Alex", 1, "Feraz" });
+                values: new object[] { 2, "25/11/1999", "Alex", 2, "Feraz" });
 
             migrationBuilder.InsertData(
                 table: "Alunos",
                 columns: new[] { "Id", "DataNasc", "Nome", "ProfessorId", "Sobrenome" },
-                values: new object[] { 3, "12/02/2001", "Luana", 1, "Pereira" });
+                values: new object[] { 3, "12/02/2001", "Luana", 3, "Pereira" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Alunos_ProfessorId",

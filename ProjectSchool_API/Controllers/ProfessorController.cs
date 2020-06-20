@@ -84,7 +84,7 @@ namespace ProjectSchool_API.Controllers
             return BadRequest();
         }
 
-        [HttpDelete("ProfessorId")]
+        [HttpDelete("{ProfessorId}")]
         public async Task<IActionResult> delete(int ProfessorId)
         {
             try

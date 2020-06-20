@@ -45,14 +45,14 @@ namespace ProjectSchool_API.Data
                         Nome = "Alex",
                         Sobrenome = "Feraz",
                         DataNasc = "25/11/1999",
-                        ProfessorId = 1
+                        ProfessorId = 2
                     },
                     new Aluno() {
                         Id = 3,
                         Nome = "Luana",
                         Sobrenome = "Pereira",
                         DataNasc = "12/02/2001",
-                        ProfessorId = 1
+                        ProfessorId = 3
                     }
                 }
             );

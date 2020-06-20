@@ -8,7 +8,7 @@ using ProjectSchool_API.Data;
 namespace ProjectSchool_API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200619012937_init")]
+    [Migration("20200620224647_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -55,7 +55,7 @@ namespace ProjectSchool_API.Migrations
                             Id = 2,
                             DataNasc = "25/11/1999",
                             Nome = "Alex",
-                            ProfessorId = 1,
+                            ProfessorId = 2,
                             Sobrenome = "Feraz"
                         },
                         new
@@ -63,7 +63,7 @@ namespace ProjectSchool_API.Migrations
                             Id = 3,
                             DataNasc = "12/02/2001",
                             Nome = "Luana",
-                            ProfessorId = 1,
+                            ProfessorId = 3,
                             Sobrenome = "Pereira"
                         });
                 });
